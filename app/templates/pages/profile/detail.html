@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}{{ profile.name }} - 个人档案 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 个人档案头部 -->
+<section class="section" style="padding-top:100px;">
+    <div class="container">
+        <div class="profile-header reveal">
+            <!-- 头像 -->
+            <div class="profile-avatar">
+                {{ profile.name[0] if profile.name else '?' }}
+            </div>
+            <!-- 基本信息 -->
+            <div class="profile-info">
+                <h1>{{ profile.name }}</h1>
+                {% if profile.major %}
+                <p class="profile-major">{{ profile.major }}</p>
+                {% endif %}
+                <div class="profile-tags">
+                    {% if profile.political_status %}
+                    <span class="profile-tag">{{ profile.political_status }}</span>
+                    {% endif %}
+                    {% if profile.ranking %}
+                    <span class="profile-tag"><i class="fas fa-chart-line" style="margin-right:4px;"></i>{{ profile.ranking }}</span>
+                    {% endif %}
+                    {% if profile.gpa %}
+                    <span class="profile-tag"><i class="fas fa-graduation-cap" style="margin-right:4px;"></i>{{ profile.gpa }}</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- 统计数据 -->
+        <div class="stats-grid reveal" style="margin-bottom:40px;">
+            <div class="stat-card" style="background:var(--bg-primary); border:1px solid var(--border-color);">
+                <div class="stat-number" style="color:var(--danger);">{{ stats.national }}</div>
+                <div class="stat-label" style="color:var(--text-secondary);">国家级成果</div>
+            </div>
+            <div class="stat-card" style="background:var(--bg-primary); border:1px solid var(--border-color);">
+                <div class="stat-number" style="color:var(--accent);">{{ stats.provincial }}</div>
+                <div class="stat-label" style="color:var(--text-secondary);">省级成果</div>
+            </div>
+            <div class="stat-card" style="background:var(--bg-primary); border:1px solid var(--border-color);">
+                <div class="stat-number" style="color:var(--success);">{{ stats.school }}</div>
+                <div class="stat-label" style="color:var(--text-secondary);">校级成果</div>
+            </div>
+            <div class="stat-card" style="background:var(--bg-primary); border:1px solid var(--border-color);">
+                <div class="stat-number" style="color:#805ad5;">{{ stats.patent }}</div>
+                <div class="stat-label" style="color:var(--text-secondary);">专利软著</div>
+            </div>
+        </div>
+
+        <!-- 个人简介 -->
+        {% if profile.bio %}
+        <div class="card reveal" style="margin-bottom:24px;">
+            <div class="card-body">
+                <h3 style="margin-bottom:12px;"><i class="fas fa-user" style="color:var(--accent); margin-right:8px;"></i>个人简介</h3>
+                <p style="line-height:1.9; white-space:pre-wrap;">{{ profile.bio }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 技能标签 -->
+        {% if profile.skills %}
+        <div class="card reveal" style="margin-bottom:24px;">
+            <div class="card-body">
+                <h3 style="margin-bottom:12px;"><i class="fas fa-code" style="color:var(--accent); margin-right:8px;"></i>专业技能</h3>
+                <div class="skill-cloud">
+                    {% if profile.skills is string %}
+                        {% set skills_list = profile.skills | tojson %}
+                        {% for skill in profile.skills.split(',') %}
+                        <span class="skill-tag">{{ skill.strip() }}</span>
+                        {% endfor %}
+                    {% else %}
+                        {% for skill in profile.skills %}
+                        <span class="skill-tag">{{ skill }}</span>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 研究方向 -->
+        {% if profile.research_interests %}
+        <div class="card reveal" style="margin-bottom:24px;">
+            <div class="card-body">
+                <h3 style="margin-bottom:12px;"><i class="fas fa-flask" style="color:var(--accent); margin-right:8px;"></i>研究方向</h3>
+                <p style="line-height:1.9; white-space:pre-wrap;">{{ profile.research_interests }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 获奖概要 -->
+        {% if profile.awards_summary %}
+        <div class="card reveal" style="margin-bottom:24px;">
+            <div class="card-body">
+                <h3 style="margin-bottom:12px;"><i class="fas fa-trophy" style="color:var(--warning); margin-right:8px;"></i>获奖概要</h3>
+                <p style="line-height:1.9; white-space:pre-wrap;">{{ profile.awards_summary }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        <!-- 相关成果列表 -->
+        {% if achievements %}
+        <div class="reveal">
+            <h3 style="font-size:1.3rem; color:var(--primary); margin-bottom:20px;">
+                <i class="fas fa-medal" style="color:var(--accent); margin-right:8px;"></i>相关成果
+            </h3>
+            <div class="card-grid">
+                {% for item in achievements %}
+                <a href="{{ url_for('achievement.achievement_detail', achievement_id=item.id) }}" class="card" style="text-decoration:none; color:inherit;">
+                    <div class="card-body">
+                        <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+                            {% if item.category == '竞赛' %}
+                            <span class="badge badge-competition">{{ item.category }}</span>
+                            {% elif item.category == '专利' or item.category == '软著' %}
+                            <span class="badge badge-patent">{{ item.category }}</span>
+                            {% else %}
+                            <span class="badge">{{ item.category }}</span>
+                            {% endif %}
+
+                            {% if item.level == '国家级' %}
+                            <span class="badge badge-national">{{ item.level }}</span>
+                            {% elif item.level == '省级' %}
+                            <span class="badge badge-provincial">{{ item.level }}</span>
+                            {% elif item.level == '校级' %}
+                            <span class="badge badge-school">{{ item.level }}</span>
+                            {% endif %}
+                        </div>
+                        <h3>{{ item.title }}</h3>
+                        {% if item.award %}
+                        <p class="card-subtitle">{{ item.award }}</p>
+                        {% endif %}
+                        {% if item.date %}
+                        <p style="font-size:0.85rem; color:var(--text-light);">
+                            <i class="far fa-calendar-alt"></i> {{ item.date.strftime('%Y-%m-%d') }}
+                        </p>
+                        {% endif %}
+                    </div>
+                </a>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

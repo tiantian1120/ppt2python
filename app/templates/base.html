@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="粤港澳大湾区人工智能与跨学科创新实践访学项目展示系统">
+    <title>{% block title %}出国交流项目展示系统{% endblock %}</title>
+    <!-- Font Awesome 图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap">
+    <!-- 自定义样式 -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <a href="{{ url_for('main.index') }}" class="nav-logo">
+                <i class="fas fa-globe-asia"></i>
+                <span>出国交流项目</span>
+            </a>
+            <button class="nav-toggle" id="navToggle" aria-label="菜单">
+                <span></span><span></span><span></span>
+            </button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="{{ url_for('main.index') }}" class="nav-link {% if request.endpoint == 'main.index' %}active{% endif %}">首页</a></li>
+                <li class="nav-dropdown">
+                    <a href="#" class="nav-link">项目介绍 <i class="fas fa-chevron-down"></i></a>
+                    <ul class="dropdown-menu">
+                        <li><a href="{{ url_for('project.project_list') }}">项目概览</a></li>
+                        <li><a href="{{ url_for('project.learning_plan') }}">学习计划</a></li>
+                        <li><a href="{{ url_for('project.visit_plan') }}">参访安排</a></li>
+                        <li><a href="{{ url_for('project.motivation') }}">参与动机</a></li>
+                        <li><a href="{{ url_for('project.expected_outcomes') }}">预期成果</a></li>
+                    </ul>
+                </li>
+                <li><a href="{{ url_for('achievement.achievement_list') }}" class="nav-link">成果展示</a></li>
+                <li><a href="{{ url_for('profile.profile_detail') }}" class="nav-link">个人档案</a></li>
+                <li><a href="{{ url_for('guide.guide_index') }}" class="nav-link">申请指南</a></li>
+                <li><a href="{{ url_for('main.contact') }}" class="nav-link">联系我们</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- 主内容区 -->
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <h3><i class="fas fa-globe-asia"></i> 出国交流项目</h3>
+                    <p>粤港澳大湾区人工智能与跨学科创新实践访学项目展示系统</p>
+                    <p>兰州城市学院重点扶持项目</p>
+                </div>
+                <div class="footer-col">
+                    <h3>快速导航</h3>
+                    <ul>
+                        <li><a href="{{ url_for('main.index') }}">首页</a></li>
+                        <li><a href="{{ url_for('project.learning_plan') }}">学习计划</a></li>
+                        <li><a href="{{ url_for('achievement.achievement_list') }}">成果展示</a></li>
+                        <li><a href="{{ url_for('profile.profile_detail') }}">个人档案</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>相关链接</h3>
+                    <ul>
+                        <li><a href="{{ url_for('guide.guide_index') }}">申请指南</a></li>
+                        <li><a href="{{ url_for('guide.faq') }}">常见问题</a></li>
+                        <li><a href="{{ url_for('main.contact') }}">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h3>联系方式</h3>
+                    <p><i class="fas fa-map-marker-alt"></i> 兰州城市学院</p>
+                    <p><i class="fas fa-envelope"></i> study_exchange@example.edu.cn</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 出国（境）学习交流项目展示系统 | 人工智能与跨学科应用</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html>

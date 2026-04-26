@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% block title %}申请指南 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>申请指南</h1>
+        <p>了解出国交流项目的申请流程、所需材料及常见问题</p>
+    </div>
+</div>
+
+<!-- 指南概览 -->
+<section class="section">
+    <div class="container">
+        <div class="card-grid card-grid-3">
+            <!-- 申请流程 -->
+            <a href="{{ url_for('guide.application_process') }}" class="card reveal" style="text-decoration:none; color:inherit;">
+                <div class="card-body" style="text-align:center;">
+                    <div class="card-icon blue" style="margin:0 auto 16px;">
+                        <i class="fas fa-route"></i>
+                    </div>
+                    <h3>申请流程</h3>
+                    <p>详细了解从项目发布到出国交流的完整申请流程，共七个步骤助你顺利申请。</p>
+                </div>
+            </a>
+
+            <!-- 申请材料 -->
+            <a href="{{ url_for('guide.required_materials') }}" class="card reveal" style="text-decoration:none; color:inherit;">
+                <div class="card-body" style="text-align:center;">
+                    <div class="card-icon green" style="margin:0 auto 16px;">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <h3>申请材料</h3>
+                    <p>查看申请出国交流项目所需准备的全部材料清单及注意事项。</p>
+                </div>
+            </a>
+
+            <!-- 常见问题 -->
+            <a href="{{ url_for('guide.faq') }}" class="card reveal" style="text-decoration:none; color:inherit;">
+                <div class="card-body" style="text-align:center;">
+                    <div class="card-icon orange" style="margin:0 auto 16px;">
+                        <i class="fas fa-question-circle"></i>
+                    </div>
+                    <h3>常见问题</h3>
+                    <p>汇总申请过程中常见的问题与解答，帮助你快速解决疑惑。</p>
+                </div>
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

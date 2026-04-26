@@ -1,0 +1,119 @@
+{% extends "base.html" %}
+
+{% block title %}申请材料 - 申请指南 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>申请材料</h1>
+        <p>申请出国交流项目需要准备以下材料，请提前做好准备</p>
+    </div>
+</div>
+
+<!-- 材料清单 -->
+<section class="section">
+    <div class="container">
+        <div style="max-width:900px; margin:0 auto;">
+            <table class="data-table reveal">
+                <thead>
+                    <tr>
+                        <th style="width:50px;">序号</th>
+                        <th style="width:160px;">材料名称</th>
+                        <th>说明</th>
+                        <th style="width:100px;">是否必须</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td><strong>出国交流申请表</strong></td>
+                        <td>在学校教务系统在线填写并打印，需本人签字及学院盖章</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td><strong>个人简历</strong></td>
+                        <td>中英文各一份，包含教育背景、科研经历、获奖情况等，不超过两页</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td><strong>成绩单</strong></td>
+                        <td>中英文对照版，由学校教务处出具并加盖公章，需包含GPA信息</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                    <tr>
+                        <td>4</td>
+                        <td><strong>推荐信</strong></td>
+                        <td>至少两封，由相关专业副教授及以上职称教师撰写，需包含推荐人联系方式</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                    <tr>
+                        <td>5</td>
+                        <td><strong>语言成绩证明</strong></td>
+                        <td>托福、雅思或其他认可的语言考试成绩单，成绩需在有效期内</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                    <tr>
+                        <td>6</td>
+                        <td><strong>研究计划/学习计划</strong></td>
+                        <td>详细说明在交流期间的学习目标、研究计划及预期成果，不少于1000字</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                    <tr>
+                        <td>7</td>
+                        <td><strong>获奖证书复印件</strong></td>
+                        <td>与申请相关的竞赛获奖、荣誉称号等证书复印件，需提供原件以备核查</td>
+                        <td><span class="badge badge-provincial">建议</span></td>
+                    </tr>
+                    <tr>
+                        <td>8</td>
+                        <td><strong>科研成果证明</strong></td>
+                        <td>已发表的论文、专利证书、软件著作权等科研成果材料</td>
+                        <td><span class="badge badge-provincial">建议</span></td>
+                    </tr>
+                    <tr>
+                        <td>9</td>
+                        <td><strong>护照复印件</strong></td>
+                        <td>有效护照个人信息页复印件，确保护照有效期覆盖整个交流期间</td>
+                        <td><span class="badge badge-provincial">建议</span></td>
+                    </tr>
+                    <tr>
+                        <td>10</td>
+                        <td><strong>健康证明</strong></td>
+                        <td>近三个月内由县级以上医院出具的健康体检报告，部分项目要求特定体检项目</td>
+                        <td><span class="badge badge-school">视项目而定</span></td>
+                    </tr>
+                    <tr>
+                        <td>11</td>
+                        <td><strong>经济担保函</strong></td>
+                        <td>由家长或监护人签署的经济担保函，证明有能力承担交流期间的费用</td>
+                        <td><span class="badge badge-school">视项目而定</span></td>
+                    </tr>
+                    <tr>
+                        <td>12</td>
+                        <td><strong>照片</strong></td>
+                        <td>近期免冠白底证件照（纸质版2寸4张，电子版一份），用于申请表及签证</td>
+                        <td><span class="badge badge-national">必须</span></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- 温馨提示 -->
+            <div class="card reveal" style="margin-top:30px; border-left:4px solid var(--warning);">
+                <div class="card-body">
+                    <h3 style="margin-bottom:12px;"><i class="fas fa-exclamation-triangle" style="color:var(--warning); margin-right:8px;"></i>温馨提示</h3>
+                    <ul style="padding-left:20px; color:var(--text-secondary); line-height:2;">
+                        <li>所有材料请使用A4纸打印，按上述顺序装订成册</li>
+                        <li>外文材料需附中文翻译件，翻译件需经有资质的翻译机构盖章确认</li>
+                        <li>请在申请截止日期前至少一周准备好全部材料，留出充足的审核时间</li>
+                        <li>如材料有更新，请及时提交最新版本并注明变更内容</li>
+                        <li>具体材料要求可能因项目不同而有所差异，请以项目通知为准</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

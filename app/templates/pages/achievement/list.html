@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+
+{% block title %}成果展示 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>成果展示</h1>
+        <p>竞赛成果 · 专利软著 · 科研项目</p>
+    </div>
+</div>
+
+<!-- 筛选与列表 -->
+<section class="section">
+    <div class="container">
+        <!-- 分类筛选 -->
+        <div class="filter-bar">
+            <span style="font-weight:500; color:var(--text-primary); margin-right:4px;">分类：</span>
+            <a href="{{ url_for('achievement.achievement_list', category='', level=current_level) }}"
+               class="filter-btn {% if not current_category %}active{% endif %}">全部</a>
+            {% for cat in categories %}
+            <a href="{{ url_for('achievement.achievement_list', category=cat, level=current_level) }}"
+               class="filter-btn {% if current_category == cat %}active{% endif %}">{{ cat }}</a>
+            {% endfor %}
+        </div>
+
+        <!-- 级别筛选 -->
+        <div class="filter-bar" style="margin-top:-10px;">
+            <span style="font-weight:500; color:var(--text-primary); margin-right:4px;">级别：</span>
+            <a href="{{ url_for('achievement.achievement_list', category=current_category, level='') }}"
+               class="filter-btn {% if not current_level %}active{% endif %}">全部</a>
+            <a href="{{ url_for('achievement.achievement_list', category=current_category, level='国家级') }}"
+               class="filter-btn {% if current_level == '国家级' %}active{% endif %}">国家级</a>
+            <a href="{{ url_for('achievement.achievement_list', category=current_category, level='省级') }}"
+               class="filter-btn {% if current_level == '省级' %}active{% endif %}">省级</a>
+            <a href="{{ url_for('achievement.achievement_list', category=current_category, level='校级') }}"
+               class="filter-btn {% if current_level == '校级' %}active{% endif %}">校级</a>
+        </div>
+
+        <!-- 成果卡片网格 -->
+        <div class="card-grid">
+            {% for item in achievements %}
+            <a href="{{ url_for('achievement.achievement_detail', achievement_id=item.id) }}" class="card reveal" style="text-decoration:none; color:inherit;">
+                <div class="card-body">
+                    <!-- 标签 -->
+                    <div style="display:flex; gap:8px; margin-bottom:12px; flex-wrap:wrap;">
+                        {% if item.category == '竞赛' %}
+                        <span class="badge badge-competition">{{ item.category }}</span>
+                        {% elif item.category == '专利' %}
+                        <span class="badge badge-patent">{{ item.category }}</span>
+                        {% elif item.category == '软著' %}
+                        <span class="badge badge-patent">{{ item.category }}</span>
+                        {% elif item.category == '荣誉' %}
+                        <span class="badge badge-competition">{{ item.category }}</span>
+                        {% else %}
+                        <span class="badge">{{ item.category }}</span>
+                        {% endif %}
+
+                        {% if item.level == '国家级' %}
+                        <span class="badge badge-national">{{ item.level }}</span>
+                        {% elif item.level == '省级' %}
+                        <span class="badge badge-provincial">{{ item.level }}</span>
+                        {% elif item.level == '校级' %}
+                        <span class="badge badge-school">{{ item.level }}</span>
+                        {% endif %}
+                    </div>
+
+                    <!-- 标题 -->
+                    <h3>{{ item.title }}</h3>
+
+                    <!-- 奖项 -->
+                    {% if item.award %}
+                    <p class="card-subtitle">{{ item.award }}</p>
+                    {% endif %}
+
+                    <!-- 日期 -->
+                    {% if item.date %}
+                    <p style="font-size:0.85rem; color:var(--text-light); margin-bottom:10px;">
+                        <i class="far fa-calendar-alt"></i> {{ item.date.strftime('%Y-%m-%d') }}
+                    </p>
+                    {% endif %}
+
+                    <!-- 描述 -->
+                    {% if item.description %}
+                    <p>{{ item.description[:100] }}{% if item.description|length > 100 %}...{% endif %}</p>
+                    {% endif %}
+                </div>
+            </a>
+            {% else %}
+            <div style="text-align:center; padding:60px 20px; color:var(--text-light); grid-column:1/-1;">
+                <i class="fas fa-trophy" style="font-size:3rem; margin-bottom:16px; display:block;"></i>
+                <p>暂无相关成果</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

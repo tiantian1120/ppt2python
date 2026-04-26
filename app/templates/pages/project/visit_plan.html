@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block title %}参访安排 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>参访安排</h1>
+        <p>粤港澳大湾区企业及高校参访计划</p>
+    </div>
+</div>
+
+<!-- 参访列表 -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>参访单位</h2>
+            <div class="section-divider"></div>
+            <p>深入粤港澳大湾区知名企业与高校，感受前沿科技与创新氛围</p>
+        </div>
+        <div class="card-grid">
+            {% for visit in visits %}
+            <div class="visit-card reveal">
+                {% if visit.icon %}
+                <div class="visit-icon">
+                    <i class="{{ visit.icon }}"></i>
+                </div>
+                {% endif %}
+                <h3>{{ visit.title }}</h3>
+                {% if visit.location %}
+                <div class="visit-location">
+                    <i class="fas fa-map-marker-alt" style="margin-right: 4px;"></i>{{ visit.location }}
+                </div>
+                {% endif %}
+                {% if visit.visit_type %}
+                <div style="margin-bottom: 10px;">
+                    <span class="badge badge-{{ visit.visit_type_class|default('provincial') }}">{{ visit.visit_type }}</span>
+                </div>
+                {% endif %}
+                {% if visit.description %}
+                <p>{{ visit.description }}</p>
+                {% endif %}
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

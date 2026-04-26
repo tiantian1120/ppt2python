@@ -1,0 +1,234 @@
+{% extends "base.html" %}
+
+{% block title %}首页 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- ==================== Hero 区域 ==================== -->
+<section class="hero">
+    <div class="hero-content animate-fadeInUp">
+        <div class="hero-badge">
+            <i class="fas fa-award"></i> 2026年第一期学生出国（境）学习交流项目
+        </div>
+        <h1>粤港澳大湾区人工智能与跨学科创新实践访学项目</h1>
+        <h2>人工智能与跨学科应用（科技创新与社会实践）</h2>
+        <div class="hero-buttons">
+            <a href="{{ url_for('project.project_list') }}" class="btn btn-primary">
+                <i class="fas fa-rocket"></i> 项目详情
+            </a>
+            <a href="{{ url_for('achievement.achievement_list') }}" class="btn btn-outline">
+                <i class="fas fa-trophy"></i> 成果展示
+            </a>
+            <a href="{{ url_for('profile.profile_detail') }}" class="btn btn-outline">
+                <i class="fas fa-user-graduate"></i> 个人档案
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 统计数据区域 ==================== -->
+<section class="hero" style="padding-top: 0; min-height: auto; padding-bottom: 60px;">
+    <div class="container">
+        <div class="stats-grid reveal">
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.national_awards }}</div>
+                <div class="stat-label">国家级奖项</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.provincial_awards }}</div>
+                <div class="stat-label">省级奖项</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.total_achievements }}</div>
+                <div class="stat-label">总成果数</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">{{ stats.patents }}</div>
+                <div class="stat-label">专利与软著</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 精选成果展示 ==================== -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>精选成果</h2>
+            <div class="section-divider"></div>
+            <p>在各类竞赛与科研项目中取得的突出成绩</p>
+        </div>
+        <div class="card-grid reveal">
+            {% for achievement in featured_achievements %}
+            <div class="card">
+                <div class="card-body">
+                    <div style="margin-bottom: 12px;">
+                        {% if achievement.level == '国家级' %}
+                            <span class="badge badge-national">{{ achievement.level }}</span>
+                        {% elif achievement.level == '省级' %}
+                            <span class="badge badge-provincial">{{ achievement.level }}</span>
+                        {% elif achievement.level == '校级' %}
+                            <span class="badge badge-school">{{ achievement.level }}</span>
+                        {% else %}
+                            <span class="badge badge-competition">{{ achievement.level }}</span>
+                        {% endif %}
+                        {% if achievement.category %}
+                            <span class="badge badge-competition" style="margin-left: 6px;">{{ achievement.category }}</span>
+                        {% endif %}
+                    </div>
+                    <h3>{{ achievement.title }}</h3>
+                    {% if achievement.award %}
+                    <p class="card-subtitle" style="margin-top: 8px;">
+                        <i class="fas fa-medal"></i> {{ achievement.award }}
+                    </p>
+                    {% endif %}
+                    {% if achievement.description %}
+                    <p>{{ achievement.description[:100] }}{% if achievement.description|length > 100 %}...{% endif %}</p>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="reveal">
+            <a href="{{ url_for('achievement.achievement_list') }}" class="btn btn-accent">
+                <i class="fas fa-arrow-right"></i> 查看全部成果
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 学习模块预览 ==================== -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>学习计划模块</h2>
+            <div class="section-divider"></div>
+            <p>系统化的学习路径，涵盖人工智能核心技术与跨学科应用实践</p>
+        </div>
+        <div class="steps-grid reveal">
+            {% if project and project.learning_modules %}
+                {% for module in project.learning_modules.limit(4) %}
+                <div class="step-card">
+                    <div class="step-number">{{ module.sort_order + 1 }}</div>
+                    <h3>{{ module.title }}</h3>
+                    {% if module.subtitle %}
+                    <p class="step-subtitle">{{ module.subtitle }}</p>
+                    {% endif %}
+                    <p>{{ module.description[:80] }}{% if module.description and module.description|length > 80 %}...{% endif %}</p>
+                </div>
+                {% endfor %}
+            {% else %}
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3>人工智能基础</h3>
+                    <p class="step-subtitle">机器学习与深度学习</p>
+                    <p>掌握人工智能核心算法与模型训练方法</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3>跨学科应用</h3>
+                    <p class="step-subtitle">AI + 多领域融合</p>
+                    <p>探索人工智能在不同学科领域的创新应用</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3>企业参访实践</h3>
+                    <p class="step-subtitle">粤港澳大湾区名企行</p>
+                    <p>深入粤港澳大湾区科技企业实地参访学习</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3>创新项目实战</h3>
+                    <p class="step-subtitle">团队协作与成果产出</p>
+                    <p>以团队形式完成跨学科创新实践项目</p>
+                </div>
+            {% endif %}
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="reveal">
+            <a href="{{ url_for('project.learning_plan') }}" class="btn btn-accent">
+                <i class="fas fa-book-open"></i> 查看完整学习计划
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 参与动机 ==================== -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>参与动机</h2>
+            <div class="section-divider"></div>
+            <p>选择参加本次出国（境）学习交流项目的核心原因</p>
+        </div>
+        <div class="card-grid card-grid-3 reveal">
+            {% set colors = ['blue', 'green', 'orange', 'purple', 'teal', 'red'] %}
+            {% for motivation in motivations %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon {{ colors[loop.index0 % colors|length] }}">
+                        <i class="fas {{ motivation.icon or 'fa-lightbulb' }}"></i>
+                    </div>
+                    <h3>{{ motivation.title }}</h3>
+                    {% if motivation.subtitle %}
+                    <p class="card-subtitle">{{ motivation.subtitle }}</p>
+                    {% endif %}
+                    <p>{{ motivation.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="reveal">
+            <a href="{{ url_for('project.motivation') }}" class="btn btn-accent">
+                <i class="fas fa-heart"></i> 了解更多动机
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 预期成果 ==================== -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>预期成果</h2>
+            <div class="section-divider"></div>
+            <p>通过本次访学项目期望达成的学术与个人发展目标</p>
+        </div>
+        <div class="card-grid card-grid-3 reveal">
+            {% for outcome in outcomes %}
+            <div class="card">
+                <div class="card-body">
+                    <div class="card-icon {{ colors[loop.index0 % colors|length] }}">
+                        <i class="fas {{ outcome.icon or 'fa-star' }}"></i>
+                    </div>
+                    <h3>{{ outcome.title }}</h3>
+                    {% if outcome.category %}
+                    <span class="badge badge-competition" style="margin-bottom: 12px;">{{ outcome.category }}</span>
+                    {% endif %}
+                    <p>{{ outcome.description }}</p>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div style="text-align: center; margin-top: 40px;" class="reveal">
+            <a href="{{ url_for('project.expected_outcomes') }}" class="btn btn-accent">
+                <i class="fas fa-flag-checkered"></i> 查看全部预期成果
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== CTA 行动号召 ==================== -->
+<section class="hero" style="min-height: auto; padding: 80px 20px;">
+    <div class="hero-content reveal">
+        <h2 style="font-size: 2rem; margin-bottom: 16px;">开启你的国际化学习之旅</h2>
+        <p style="margin-bottom: 32px; opacity: 0.9;">了解更多关于粤港澳大湾区人工智能访学项目的信息</p>
+        <div class="hero-buttons">
+            <a href="{{ url_for('guide.guide_index') }}" class="btn btn-primary">
+                <i class="fas fa-file-alt"></i> 申请指南
+            </a>
+            <a href="{{ url_for('main.contact') }}" class="btn btn-outline">
+                <i class="fas fa-envelope"></i> 联系我们
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

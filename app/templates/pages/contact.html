@@ -1,0 +1,153 @@
+{% extends "base.html" %}
+
+{% block title %}联系我们 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- ==================== 页面头部 ==================== -->
+<section class="page-header">
+    <div class="container">
+        <h1 class="animate-fadeInUp">联系我们</h1>
+        <p class="animate-fadeInUp animate-delay-1">如有任何疑问，欢迎通过以下方式与我们取得联系</p>
+    </div>
+</section>
+
+<!-- ==================== 联系方式与表单 ==================== -->
+<section class="section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- 左侧：联系信息 -->
+            <div class="reveal">
+                <h2 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 24px;">
+                    <i class="fas fa-headset" style="color: var(--accent); margin-right: 8px;"></i>联系方式
+                </h2>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 4px;">学校地址</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">甘肃省兰州市安宁区兰州城市学院</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 4px;">电子邮箱</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">study_exchange@example.edu.cn</p>
+                        <p style="color: var(--text-light); font-size: 0.85rem; margin-top: 4px;">工作日24小时内回复</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-phone-alt"></i>
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 4px;">联系电话</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">0931-XXXX-XXXX</p>
+                        <p style="color: var(--text-light); font-size: 0.85rem; margin-top: 4px;">工作日 9:00 - 17:00</p>
+                    </div>
+                </div>
+
+                <div class="contact-info-card">
+                    <i class="fas fa-clock"></i>
+                    <div>
+                        <h4 style="color: var(--primary); margin-bottom: 4px;">办公时间</h4>
+                        <p style="color: var(--text-secondary); font-size: 0.95rem;">周一至周五 9:00 - 12:00 / 14:00 - 17:00</p>
+                        <p style="color: var(--text-light); font-size: 0.85rem; margin-top: 4px;">法定节假日除外</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：联系表单 -->
+            <div class="reveal">
+                <h2 style="font-size: 1.5rem; color: var(--primary); margin-bottom: 24px;">
+                    <i class="fas fa-paper-plane" style="color: var(--accent); margin-right: 8px;"></i>在线留言
+                </h2>
+
+                <div style="background: var(--bg-primary); border-radius: var(--radius-lg); padding: 32px; box-shadow: var(--shadow-md);">
+                    <form action="#" method="POST">
+                        <div class="form-group">
+                            <label for="name">
+                                <i class="fas fa-user" style="color: var(--accent); margin-right: 6px;"></i>您的姓名
+                            </label>
+                            <input type="text" id="name" name="name" placeholder="请输入您的姓名" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">
+                                <i class="fas fa-envelope" style="color: var(--accent); margin-right: 6px;"></i>电子邮箱
+                            </label>
+                            <input type="email" id="email" name="email" placeholder="请输入您的邮箱地址" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="subject">
+                                <i class="fas fa-tag" style="color: var(--accent); margin-right: 6px;"></i>主题
+                            </label>
+                            <input type="text" id="subject" name="subject" placeholder="请输入留言主题" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="message">
+                                <i class="fas fa-comment-dots" style="color: var(--accent); margin-right: 6px;"></i>留言内容
+                            </label>
+                            <textarea id="message" name="message" placeholder="请输入您的留言内容..." rows="5" required></textarea>
+                        </div>
+
+                        <button type="submit" class="btn btn-accent" style="width: 100%; justify-content: center;">
+                            <i class="fas fa-paper-plane"></i> 发送留言
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 地图位置 ==================== -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>学校位置</h2>
+            <div class="section-divider"></div>
+        </div>
+        <div class="reveal">
+            <div style="background: var(--bg-primary); border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+                <!-- 地图占位区域 -->
+                <div style="width: 100%; height: 400px; background: linear-gradient(135deg, var(--bg-tertiary), var(--bg-secondary)); display: flex; align-items: center; justify-content: center; flex-direction: column; gap: 16px;">
+                    <i class="fas fa-map-marked-alt" style="font-size: 4rem; color: var(--accent); opacity: 0.5;"></i>
+                    <p style="color: var(--text-light); font-size: 1.1rem;">地图加载区域</p>
+                    <p style="color: var(--text-light); font-size: 0.9rem;">甘肃省兰州市安宁区兰州城市学院</p>
+                </div>
+                <!-- 位置信息 -->
+                <div style="padding: 24px;">
+                    <div style="display: flex; align-items: flex-start; gap: 12px;">
+                        <i class="fas fa-info-circle" style="color: var(--accent); margin-top: 3px;"></i>
+                        <div>
+                            <h4 style="color: var(--primary); margin-bottom: 6px;">交通指引</h4>
+                            <p style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
+                                兰州城市学院位于甘肃省兰州市安宁区，可乘坐市内公共交通到达。具体路线请参考学校官方网站发布的交通指南，或通过导航软件搜索"兰州城市学院"获取最佳路线。
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ==================== 常见问题引导 ==================== -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>还有疑问？</h2>
+            <div class="section-divider"></div>
+            <p>您也可以查看我们的常见问题，或许能找到您需要的答案</p>
+        </div>
+        <div style="text-align: center;" class="reveal">
+            <a href="{{ url_for('guide.faq') }}" class="btn btn-accent">
+                <i class="fas fa-question-circle"></i> 查看常见问题
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}

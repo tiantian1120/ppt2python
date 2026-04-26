@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block title %}参与动机 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>参与动机</h1>
+        <p>驱动我参与出国（境）学习交流项目的核心动力</p>
+    </div>
+</div>
+
+<!-- 动机卡片 -->
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            {% for motivation in motivations %}
+            <div class="card reveal">
+                <div class="card-body">
+                    {% if motivation.icon %}
+                    <div class="card-icon {{ motivation.icon_class|default('blue') }}">
+                        <i class="{{ motivation.icon }}"></i>
+                    </div>
+                    {% endif %}
+                    <h3>{{ motivation.title }}</h3>
+                    {% if motivation.subtitle %}
+                    <p class="card-subtitle">{{ motivation.subtitle }}</p>
+                    {% endif %}
+                    {% if motivation.description %}
+                    <p>{{ motivation.description }}</p>
+                    {% endif %}
+                    {% if motivation.keywords %}
+                    <div class="skill-cloud" style="margin-top: 16px;">
+                        {% for keyword in motivation.keywords %}
+                        <span class="skill-tag">{{ keyword }}</span>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

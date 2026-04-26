@@ -1,0 +1,92 @@
+{% extends "base.html" %}
+
+{% block title %}{{ achievement.title }} - 成果展示 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>{{ achievement.title }}</h1>
+        <p>
+            {% if achievement.category %}{{ achievement.category }}{% endif %}
+            {% if achievement.level %} · {{ achievement.level }}{% endif %}
+        </p>
+    </div>
+</div>
+
+<!-- 成果详情 -->
+<section class="section">
+    <div class="container">
+        <div class="card reveal" style="max-width:900px; margin:0 auto;">
+            <div class="card-body" style="padding:40px;">
+                <!-- 标签 -->
+                <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap:wrap;">
+                    {% if achievement.category == '竞赛' %}
+                    <span class="badge badge-competition">{{ achievement.category }}</span>
+                    {% elif achievement.category == '专利' %}
+                    <span class="badge badge-patent">{{ achievement.category }}</span>
+                    {% elif achievement.category == '软著' %}
+                    <span class="badge badge-patent">{{ achievement.category }}</span>
+                    {% elif achievement.category == '荣誉' %}
+                    <span class="badge badge-competition">{{ achievement.category }}</span>
+                    {% else %}
+                    <span class="badge">{{ achievement.category }}</span>
+                    {% endif %}
+
+                    {% if achievement.level == '国家级' %}
+                    <span class="badge badge-national">{{ achievement.level }}</span>
+                    {% elif achievement.level == '省级' %}
+                    <span class="badge badge-provincial">{{ achievement.level }}</span>
+                    {% elif achievement.level == '校级' %}
+                    <span class="badge badge-school">{{ achievement.level }}</span>
+                    {% endif %}
+                </div>
+
+                <!-- 成果图片 -->
+                {% if achievement.image %}
+                <div style="margin-bottom:24px; border-radius:var(--radius-md); overflow:hidden;">
+                    <img src="{{ achievement.image }}" alt="{{ achievement.title }}" style="width:100%; display:block;">
+                </div>
+                {% endif %}
+
+                <!-- 奖项 -->
+                {% if achievement.award %}
+                <div style="margin-bottom:20px;">
+                    <h3 style="font-size:1.1rem; color:var(--primary); margin-bottom:8px;">
+                        <i class="fas fa-award" style="color:var(--warning); margin-right:8px;"></i>获奖情况
+                    </h3>
+                    <p style="font-size:1.2rem; color:var(--accent); font-weight:600;">{{ achievement.award }}</p>
+                </div>
+                {% endif %}
+
+                <!-- 获得日期 -->
+                {% if achievement.date %}
+                <div style="margin-bottom:20px;">
+                    <h3 style="font-size:1.1rem; color:var(--primary); margin-bottom:8px;">
+                        <i class="far fa-calendar-alt" style="color:var(--accent); margin-right:8px;"></i>获得日期
+                    </h3>
+                    <p>{{ achievement.date.strftime('%Y年%m月%d日') }}</p>
+                </div>
+                {% endif %}
+
+                <!-- 详细描述 -->
+                {% if achievement.description %}
+                <div style="margin-bottom:20px;">
+                    <h3 style="font-size:1.1rem; color:var(--primary); margin-bottom:8px;">
+                        <i class="fas fa-file-alt" style="color:var(--accent); margin-right:8px;"></i>成果简介
+                    </h3>
+                    <p style="line-height:1.9; white-space:pre-wrap;">{{ achievement.description }}</p>
+                </div>
+                {% endif %}
+
+                <!-- 返回按钮 -->
+                <div style="margin-top:30px; padding-top:20px; border-top:1px solid var(--border-color);">
+                    <a href="{{ url_for('achievement.achievement_list') }}" class="btn btn-accent btn-sm">
+                        <i class="fas fa-arrow-left"></i> 返回成果列表
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

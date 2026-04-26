@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}项目概览 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>项目概览</h1>
+        <p>探索我们的出国（境）学习交流项目，开启跨学科创新之旅</p>
+    </div>
+</div>
+
+<!-- 项目列表 -->
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            {% for project in projects %}
+            <a href="{{ url_for('project.project_detail', project_id=project.id) }}" class="card reveal" style="text-decoration: none; color: inherit;">
+                <div class="card-body">
+                    <h3>{{ project.title }}</h3>
+                    {% if project.subtitle %}
+                    <p class="card-subtitle">{{ project.subtitle }}</p>
+                    {% endif %}
+                    <p>{{ project.description[:100] }}{% if project.description|length > 100 %}...{% endif %}</p>
+                    <div style="margin-top: 16px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px;">
+                        {% if project.status %}
+                        <span class="badge badge-{{ project.status_class|default('provincial') }}">{{ project.status }}</span>
+                        {% endif %}
+                        {% if project.start_date and project.end_date %}
+                        <span style="font-size: 0.85rem; color: var(--text-light);">
+                            <i class="far fa-calendar-alt"></i> {{ project.start_date }} ~ {{ project.end_date }}
+                        </span>
+                        {% endif %}
+                    </div>
+                </div>
+            </a>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

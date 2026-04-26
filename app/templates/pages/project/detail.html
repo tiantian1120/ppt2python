@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% block title %}{{ project.title }} - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>{{ project.title }}</h1>
+        {% if project.subtitle %}
+        <p>{{ project.subtitle }}</p>
+        {% endif %}
+    </div>
+</div>
+
+<!-- 项目信息 -->
+<section class="section">
+    <div class="container">
+        <div class="reveal">
+            <div class="card" style="margin-bottom: 40px;">
+                <div class="card-body">
+                    <h2 style="font-size: 1.4rem; color: var(--primary); margin-bottom: 16px;">
+                        <i class="fas fa-info-circle" style="color: var(--accent); margin-right: 8px;"></i>项目简介
+                    </h2>
+                    <p>{{ project.description }}</p>
+                    <div style="margin-top: 20px; display: flex; flex-wrap: wrap; gap: 24px;">
+                        {% if project.start_date and project.end_date %}
+                        <div>
+                            <span style="font-size: 0.85rem; color: var(--text-light); display: block; margin-bottom: 4px;">项目时间</span>
+                            <span style="font-size: 0.95rem; color: var(--text-primary); font-weight: 500;">
+                                <i class="far fa-calendar-alt" style="color: var(--accent); margin-right: 6px;"></i>
+                                {{ project.start_date }} ~ {{ project.end_date }}
+                            </span>
+                        </div>
+                        {% endif %}
+                        {% if project.status %}
+                        <div>
+                            <span style="font-size: 0.85rem; color: var(--text-light); display: block; margin-bottom: 4px;">项目状态</span>
+                            <span class="badge badge-{{ project.status_class|default('provincial') }}">{{ project.status }}</span>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 学习模块 -->
+        {% if modules %}
+        <div class="reveal">
+            <div class="section-header">
+                <h2>学习模块</h2>
+                <div class="section-divider"></div>
+                <p>本项目包含以下核心学习模块</p>
+            </div>
+            <div class="card-grid">
+                {% for module in modules %}
+                <div class="card reveal">
+                    <div class="card-body">
+                        <h3>{{ module.title }}</h3>
+                        {% if module.subtitle %}
+                        <p class="card-subtitle">{{ module.subtitle }}</p>
+                        {% endif %}
+                        {% if module.tech_content %}
+                        <div style="margin-bottom: 12px;">
+                            <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 500;">
+                                <i class="fas fa-code" style="margin-right: 4px;"></i>技术学习内容
+                            </span>
+                            <p style="margin-top: 4px;">{{ module.tech_content }}</p>
+                        </div>
+                        {% endif %}
+                        {% if module.practice_direction %}
+                        <div style="margin-bottom: 12px;">
+                            <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 500;">
+                                <i class="fas fa-flask" style="margin-right: 4px;"></i>实践应用方向
+                            </span>
+                            <p style="margin-top: 4px;">{{ module.practice_direction }}</p>
+                        </div>
+                        {% endif %}
+                        {% if module.ability_improvement %}
+                        <div>
+                            <span style="font-size: 0.85rem; color: var(--text-light); font-weight: 500;">
+                                <i class="fas fa-chart-line" style="margin-right: 4px;"></i>综合能力提升
+                            </span>
+                            <p style="margin-top: 4px;">{{ module.ability_improvement }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,64 @@
+{% extends "base.html" %}
+
+{% block title %}申请流程 - 申请指南 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>申请流程</h1>
+        <p>从项目发布到出国交流，了解每一步的具体要求</p>
+    </div>
+</div>
+
+<!-- 流程时间线 -->
+<section class="section">
+    <div class="container">
+        <div style="max-width:800px; margin:0 auto;">
+            <div class="timeline reveal">
+                <!-- 步骤1：项目发布 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-bullhorn" style="color:var(--accent); margin-right:8px;"></i>项目发布</h4>
+                    <p>学校国际合作与交流处发布出国（境）交流项目通知，公布项目名称、交流院校、名额、时间安排及申请条件等信息。请密切关注学校官网及学院通知公告。</p>
+                </div>
+
+                <!-- 步骤2：在线申请 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-laptop" style="color:var(--accent); margin-right:8px;"></i>在线申请</h4>
+                    <p>符合条件的学生在学校教务系统或指定平台提交在线申请，填写个人信息、学业情况及申请理由，并上传所需申请材料。申请截止日期前请务必完成提交。</p>
+                </div>
+
+                <!-- 步骤3：材料审核 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-clipboard-check" style="color:var(--accent); margin-right:8px;"></i>材料审核</h4>
+                    <p>国际合作与交流处对申请人提交的材料进行初步审核，核实申请资格、材料完整性和真实性。审核通过后将通知进入下一环节。</p>
+                </div>
+
+                <!-- 步骤4：面试选拔 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-comments" style="color:var(--accent); margin-right:8px;"></i>面试选拔</h4>
+                    <p>通过材料审核的候选人将参加由评审委员会组织的面试选拔。面试主要考察学生的综合素质、语言能力、专业水平及交流动机等方面表现。</p>
+                </div>
+
+                <!-- 步骤5：公示结果 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-list-ol" style="color:var(--accent); margin-right:8px;"></i>公示结果</h4>
+                    <p>评审委员会根据材料评审和面试表现综合评定，确定拟推荐名单并在全校范围内进行公示，公示期一般为5个工作日。</p>
+                </div>
+
+                <!-- 步骤6：行前培训 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-chalkboard-teacher" style="color:var(--accent); margin-right:8px;"></i>行前培训</h4>
+                    <p>获得推荐资格的学生需参加学校组织的行前培训，内容包括目的地国家文化习俗、安全注意事项、学术规范要求及应急处理方案等。</p>
+                </div>
+
+                <!-- 步骤7：出国交流 -->
+                <div class="timeline-item">
+                    <h4><i class="fas fa-plane-departure" style="color:var(--accent); margin-right:8px;"></i>出国交流</h4>
+                    <p>完成签证办理、机票预订等手续后，学生按计划赴交流院校开展学习交流活动。交流期间需定期向学校汇报学习进展，交流结束后提交总结报告。</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

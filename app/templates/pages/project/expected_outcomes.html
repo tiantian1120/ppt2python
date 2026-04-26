@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+
+{% block title %}预期成果 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>预期成果</h1>
+        <p>通过本次学习交流项目，期望达成的核心目标与成果</p>
+    </div>
+</div>
+
+<!-- 预期成果卡片 -->
+<section class="section">
+    <div class="container">
+        <div class="card-grid">
+            {% for outcome in outcomes %}
+            <div class="card reveal">
+                <div class="card-body">
+                    {% if outcome.icon %}
+                    <div class="card-icon {{ outcome.icon_class|default('blue') }}">
+                        <i class="{{ outcome.icon }}"></i>
+                    </div>
+                    {% endif %}
+                    <h3>{{ outcome.title }}</h3>
+                    {% if outcome.description %}
+                    <p>{{ outcome.description }}</p>
+                    {% endif %}
+                    {% if outcome.category %}
+                    <div style="margin-top: 16px;">
+                        <span class="badge badge-{{ outcome.category_class|default('provincial') }}">{{ outcome.category }}</span>
+                    </div>
+                    {% endif %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+{% endblock %}

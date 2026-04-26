@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+
+{% block title %}学习计划 - 出国交流项目展示系统{% endblock %}
+
+{% block content %}
+<!-- 页面头部 -->
+<div class="page-header">
+    <div class="container">
+        <h1>学习计划</h1>
+        <p>四大核心学习模块</p>
+    </div>
+</div>
+
+<!-- 学习步骤概览 -->
+<section class="section">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>学习路径</h2>
+            <div class="section-divider"></div>
+            <p>循序渐进，系统掌握人工智能与跨学科应用核心能力</p>
+        </div>
+        <div class="steps-grid">
+            {% for module in modules %}
+            <div class="step-card reveal">
+                <div class="step-number">{{ loop.index }}</div>
+                <h3>{{ module.title }}</h3>
+                {% if module.subtitle %}
+                <p class="step-subtitle">{{ module.subtitle }}</p>
+                {% endif %}
+                <p>{{ module.description|default('') }}</p>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- 详细学习内容表格 -->
+<section class="section section-alt">
+    <div class="container">
+        <div class="section-header reveal">
+            <h2>详细学习内容</h2>
+            <div class="section-divider"></div>
+            <p>各模块核心学习子项与技术实践方向</p>
+        </div>
+        <div class="reveal" style="overflow-x: auto;">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th>学习模块</th>
+                        <th>主要学习子项</th>
+                        <th>技术学习内容</th>
+                        <th>实践应用方向</th>
+                        <th>综合能力提升</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for module in modules %}
+                    <tr>
+                        <td><strong>{{ module.title }}</strong></td>
+                        <td>{{ module.subtitle|default('') }}</td>
+                        <td>{{ module.tech_content|default('') }}</td>
+                        <td>{{ module.practice_direction|default('') }}</td>
+                        <td>{{ module.ability_improvement|default('') }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}
