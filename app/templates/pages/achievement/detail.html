@@ -42,10 +42,18 @@
                     {% endif %}
                 </div>
 
-                <!-- 成果图片 -->
+                <!-- 成果图片/证书 -->
                 {% if achievement.image %}
-                <div style="margin-bottom:24px; border-radius:var(--radius-md); overflow:hidden;">
-                    <img src="{{ achievement.image }}" alt="{{ achievement.title }}" style="width:100%; display:block;">
+                <div style="margin-bottom:24px;">
+                    <h3 style="font-size:1.1rem; color:var(--primary); margin-bottom:12px;">
+                        <i class="fas fa-certificate" style="color:var(--warning); margin-right:8px;"></i>获奖证书
+                    </h3>
+                    {% set images = achievement.image.split(',') %}
+                    {% for img in images %}
+                    <div style="margin-bottom:16px; border-radius:var(--radius-md); overflow:hidden; border:1px solid var(--border-color);">
+                        <img src="{{ img }}" alt="{{ achievement.title }}" style="width:100%; display:block;">
+                    </div>
+                    {% endfor %}
                 </div>
                 {% endif %}
 
