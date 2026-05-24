@@ -11,6 +11,7 @@ venv/
 
 # Database
 *.db
+!data/study_exchange.db
 
 # IDE
 .vscode/
